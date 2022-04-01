@@ -7,6 +7,7 @@ import { VaultDetail } from './VaultDetail';
 import { Wallet } from './Wallet';
 import { Vaults } from './Vaults';
 import { Labs } from './Labs';
+import { LabDetail } from './LabDetail';
 import { IronBank } from './IronBank';
 import { Settings } from './Settings';
 import { Disclaimer } from './Disclaimer';
@@ -30,6 +31,10 @@ const routesMap = [
     component: Labs,
   },
   {
+    path: '/lab/:labAddress',
+    component: LabDetail,
+  },
+  {
     path: '/ironBank',
     component: IronBank,
   },
@@ -41,7 +46,6 @@ const routesMap = [
     path: '/disclaimer',
     component: Disclaimer,
   },
-
   {
     path: '/vault/:vaultAddress',
     component: VaultDetail,

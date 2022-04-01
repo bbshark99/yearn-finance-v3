@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 import { useAppSelector, useAppDispatch, useIsMounting, useAppTranslation } from '@hooks';
 import {
@@ -125,6 +126,7 @@ const ApyTooltip = ({ apyData, apyMetadata, address }: Pick<GeneralLabView, 'apy
 export const Labs = () => {
   const { t } = useAppTranslation(['common', 'labs']);
 
+  const history = useHistory();
   const { CONTRACT_ADDRESSES, NETWORK_SETTINGS } = getConstants();
   const { YVECRV, YVBOOST, PSLPYVBOOSTETH } = CONTRACT_ADDRESSES;
   const dispatch = useAppDispatch();
@@ -319,7 +321,7 @@ export const Labs = () => {
                   name: displayName,
                   info: formatPercent(apyData, 2),
                   infoDetail: 'EYY',
-                  // onAction: () => history.push(`/vault/${address}`),
+                  onAction: () => history.push(`/lab/${address}`),
                 }))}
               />
               <StyledInfoCard
@@ -405,8 +407,7 @@ export const Labs = () => {
                 alert: labsHoldingsAlerts(lab) ?? '',
                 actions: null,
               }))}
-              // TODO Redirect address is wrong
-              // onAction={({ address }) => history.push(`/vault/${address}`)}
+              onAction={({ address }) => history.push(`/lab/${address}`)}
               initialSortBy="value"
               wrap
             />
@@ -481,8 +482,7 @@ export const Labs = () => {
                 </SearchBarContainer>
               }
               searching={opportunities.length > filteredOpportunities.length}
-              // TODO Redirect address is wrong
-              // onAction={({ address }) => history.push(`/vault/${address}`)}
+              onAction={({ address }) => history.push(`/lab/${address}`)}
               initialSortBy="apyData"
               wrap
             />
